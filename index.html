@@ -837,6 +837,162 @@ html {
     font-size: 0.8rem;
     color: var(--text-main);
 }
+/* ===== Integration Health Monitor Widget ===== */
+
+.health-widget {
+    background: radial-gradient(circle at top left, rgba(56,189,248,0.16), transparent 55%),
+                radial-gradient(circle at bottom right, rgba(37,99,235,0.20), transparent 60%),
+                var(--bg-panel);
+    border-radius: 20px;
+    border: 1px solid rgba(148,163,184,0.4);
+    padding: 1.3rem 1.4rem 1.1rem;
+    box-shadow: 0 22px 50px rgba(15,23,42,0.9),
+                0 0 28px rgba(56,189,248,0.35);
+    font-size: 0.86rem;
+}
+
+.health-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.9rem;
+}
+
+.health-label {
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+
+.health-env-pill {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    border: 1px solid rgba(56,189,248,0.8);
+    color: var(--primary-soft);
+    background: rgba(15,23,42,0.9);
+}
+
+.health-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    margin-bottom: 0.7rem;
+}
+
+.health-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.45rem 0.3rem;
+    border-radius: 10px;
+    background: rgba(15,23,42,0.6);
+    border: 1px solid rgba(15,23,42,0.9);
+}
+
+.health-row:nth-child(odd) {
+    background: rgba(15,23,42,0.8);
+}
+
+.health-system {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--text-main);
+}
+
+.health-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.health-status {
+    font-size: 0.76rem;
+    padding: 0.18rem 0.55rem;
+    border-radius: 999px;
+    border: 1px solid transparent;
+}
+
+.health-status.ok {
+    border-color: rgba(34,197,94,0.6);
+    color: #bbf7d0;
+    background: rgba(6,95,70,0.4);
+}
+
+.health-status.warn {
+    border-color: rgba(234,179,8,0.7);
+    color: #facc15;
+    background: rgba(120,53,15,0.45);
+}
+
+.health-metric {
+    font-family: "Inter", monospace;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+.health-events {
+    color: var(--primary-soft);
+}
+
+/* Dots */
+.health-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 999px;
+    box-shadow: 0 0 10px;
+}
+
+.health-dot-ok {
+    background: #22c55e;
+    box-shadow: 0 0 10px rgba(34,197,94,0.9);
+    animation: healthPulseOk 1.8s ease-in-out infinite;
+}
+
+.health-dot-warn {
+    background: #facc15;
+    box-shadow: 0 0 10px rgba(250,204,21,0.9);
+    animation: healthPulseWarn 2s ease-in-out infinite;
+}
+
+@keyframes healthPulseOk {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50%      { transform: scale(1.4); opacity: 1; }
+}
+
+@keyframes healthPulseWarn {
+    0%, 100% { transform: scale(1); opacity: 0.75; }
+    50%      { transform: scale(1.3); opacity: 1; }
+}
+
+.health-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.45rem;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    border-top: 1px solid rgba(148,163,184,0.4);
+    padding-top: 0.45rem;
+    margin-top: 0.1rem;
+}
+
+.health-footer-sep {
+    opacity: 0.6;
+}
+
+/* Mobile tweak */
+@media (max-width: 640px) {
+    .health-meta {
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.18rem;
+    }
+}
 
     </style>
 </head>
@@ -1042,6 +1198,88 @@ html {
             </div>
         </div>
     </section>
+<section id="health-monitor">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-eyebrow">Operations</div>
+            <h2 class="section-title">Integration Health Monitor</h2>
+            <p class="section-desc">
+                Snapshot of core integration endpoints as observed by AuroreSoft. 
+                Indicative demo panel for system connectivity and flow stability.
+            </p>
+        </div>
+
+        <div class="health-widget">
+            <div class="health-header">
+                <span class="health-label">Live status</span>
+                <span class="health-env-pill">PROD · SIMULATED</span>
+            </div>
+
+            <div class="health-rows">
+                <div class="health-row">
+                    <div class="health-system">
+                        <span class="health-dot health-dot-ok"></span>
+                        SAP Core
+                    </div>
+                    <div class="health-meta">
+                        <span class="health-status ok">Online</span>
+                        <span class="health-metric"><span class="health-events" data-base="4200">0</span> ev/min</span>
+                    </div>
+                </div>
+
+                <div class="health-row">
+                    <div class="health-system">
+                        <span class="health-dot health-dot-ok"></span>
+                        Salesforce
+                    </div>
+                    <div class="health-meta">
+                        <span class="health-status ok">Stable</span>
+                        <span class="health-metric"><span class="health-events" data-base="3100">0</span> ev/min</span>
+                    </div>
+                </div>
+
+                <div class="health-row">
+                    <div class="health-system">
+                        <span class="health-dot health-dot-warn"></span>
+                         Boomi
+                    </div>
+                    <div class="health-meta">
+                        <span class="health-status warn">Minor queueing</span>
+                        <span class="health-metric"><span class="health-events" data-base="1980">0</span> ev/min</span>
+                    </div>
+                </div>
+
+                <div class="health-row">
+                    <div class="health-system">
+                        <span class="health-dot health-dot-ok"></span>
+                        SAP CPI
+                    </div>
+                    <div class="health-meta">
+                        <span class="health-status ok">Healthy</span>
+                        <span class="health-metric"><span class="health-events" data-base="2650">0</span> ev/min</span>
+                    </div>
+                </div>
+
+                <div class="health-row">
+                    <div class="health-system">
+                        <span class="health-dot health-dot-ok"></span>
+                        Workday / HR
+                    </div>
+                    <div class="health-meta">
+                        <span class="health-status ok">Synchronized</span>
+                        <span class="health-metric"><span class="health-events" data-base="1150">0</span> ev/min</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="health-footer">
+                <span id="healthLastCheck">Last check: --:--:--</span>
+                <span class="health-footer-sep">•</span>
+                <span>Region: Primary · IST</span>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- ABOUT + CONTACT -->
     <section id="about">
@@ -1404,6 +1642,47 @@ html {
 
     const metricsBlock = document.querySelector(".hero-metrics");
     if (metricsBlock) observer.observe(metricsBlock);
+})();
+// ===== Integration Health Monitor animation =====
+(function () {
+    const lastCheckEl = document.getElementById("healthLastCheck");
+    const eventEls = document.querySelectorAll(".health-events");
+    if (!lastCheckEl || !eventEls.length) return;
+
+    function updateLastCheck() {
+        // If you already have getTimeInZone(), reuse it. 
+        // Otherwise use local time:
+        const now = new Date();
+        const t = now.toLocaleTimeString("en-GB", {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+        });
+        lastCheckEl.textContent = "Last check: " + t;
+    }
+
+    function randomAround(base, spread) {
+        const delta = (Math.random() - 0.5) * spread;
+        return Math.max(0, Math.round(base + delta));
+    }
+
+    function updateEventRates() {
+        eventEls.forEach(el => {
+            const base = parseInt(el.dataset.base || "1000", 10);
+            const value = randomAround(base, base * 0.08); // ±8%
+            el.textContent = value.toString();
+        });
+    }
+
+    // Initial paint
+    updateLastCheck();
+    updateEventRates();
+
+    // Update every ~7 seconds to look like periodic polling
+    setInterval(() => {
+        updateLastCheck();
+        updateEventRates();
+    }, 7000);
 })();
 
 </script>
