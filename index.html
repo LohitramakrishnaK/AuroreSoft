@@ -756,6 +756,8 @@ html {
             padding: 1.1rem 0 2rem;
             font-size: 0.8rem;
             color: var(--text-muted);
+            padding-top: 0.8rem;          /* reduce top padding */
+            padding-bottom: 1.2rem;
         }
 
         .footer-row {
@@ -764,6 +766,7 @@ html {
             justify-content: space-between;
             gap: 1rem;
             flex-wrap: wrap;
+            margin-bottom: 0.2rem; 
         }
 
         .footer-links {
@@ -977,7 +980,14 @@ html {
     0%, 100% { transform: scale(1); opacity: 0.75; }
     50%      { transform: scale(1.3); opacity: 1; }
 }
-
+.legal-disclaimer {
+    margin-top: 0 !important;     /* no gap above */
+    padding-top: 0 !important;
+    line-height: 1.2;              /* tighter height */
+    font-size: 0.65rem;
+    opacity: 0.6;
+    text-align: left;              /* matches your © alignment */
+}
 .health-footer {
     display: flex;
     align-items: center;
@@ -992,6 +1002,23 @@ html {
 
 .health-footer-sep {
     opacity: 0.6;
+}
+.footer-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.copyright {
+    margin-bottom: 0.15rem;
+}
+
+.legal-disclaimer {
+    margin: 0;
+    padding: 0;
+    font-size: 0.65rem;
+    opacity: 0.6;
+    line-height: 1.1;
+    text-align: left;
 }
 
 /* Mobile tweak */
@@ -1162,6 +1189,7 @@ html {
                     </p>
                 </article>
             </div>
+          
         </div>
     </section>
 
@@ -1394,12 +1422,22 @@ html {
 </main>
 
 <footer>
-    <div class="container footer-row">
-        <div>© <span id="year"></span> AuroreSoft. All rights reserved.</div>
-        <div class="footer-links">
-            <a href="#services">Services</a>
-            <a href="#solutions">Solutions</a>
-            <a href="#contact">Contact</a>
+    <div class="container">
+        <div class="footer-row">
+            <div class="footer-left">
+                <div class="copyright">
+                    © <span id="year"></span> AuroreSoft. All rights reserved.
+                </div>
+                <div class="legal-disclaimer">
+                    All product names, logos, and brands are property of their respective owners.
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <a href="#services">Services</a>
+                <a href="#solutions">Solutions</a>
+                <a href="#contact">Contact</a>
+            </div>
         </div>
     </div>
 </footer>
