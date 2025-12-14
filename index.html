@@ -849,107 +849,7 @@ html {
     font-size: 0.8rem;
     color: var(--text-main);
 }
-/* ===== Integration Health Monitor Widget ===== */
-
-.health-widget {
-    background: radial-gradient(circle at top left, rgba(56,189,248,0.16), transparent 55%),
-                radial-gradient(circle at bottom right, rgba(37,99,235,0.20), transparent 60%),
-                var(--bg-panel);
-    border-radius: 20px;
-    border: 1px solid rgba(148,163,184,0.4);
-    padding: 1.3rem 1.4rem 1.1rem;
-    box-shadow: 0 22px 50px rgba(15,23,42,0.9),
-                0 0 28px rgba(56,189,248,0.35);
-    font-size: 0.86rem;
-}
-
-.health-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.9rem;
-}
-
-.health-label {
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    font-size: 0.7rem;
-    color: var(--text-muted);
-}
-
-.health-env-pill {
-    font-size: 0.68rem;
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    padding: 0.25rem 0.7rem;
-    border-radius: 999px;
-    border: 1px solid rgba(56,189,248,0.8);
-    color: var(--primary-soft);
-    background: rgba(15,23,42,0.9);
-}
-
-.health-rows {
-    display: flex;
-    flex-direction: column;
-    gap: 0.45rem;
-    margin-bottom: 0.7rem;
-}
-
-.health-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.45rem 0.3rem;
-    border-radius: 10px;
-    background: rgba(15,23,42,0.6);
-    border: 1px solid rgba(15,23,42,0.9);
-}
-
-.health-row:nth-child(odd) {
-    background: rgba(15,23,42,0.8);
-}
-
-.health-system {
-    display: flex;
-    align-items: center;
-    gap: 0.45rem;
-    color: var(--text-main);
-}
-
-.health-meta {
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-}
-
-.health-status {
-    font-size: 0.76rem;
-    padding: 0.18rem 0.55rem;
-    border-radius: 999px;
-    border: 1px solid transparent;
-}
-
-.health-status.ok {
-    border-color: rgba(34,197,94,0.6);
-    color: #bbf7d0;
-    background: rgba(6,95,70,0.4);
-}
-
-.health-status.warn {
-    border-color: rgba(234,179,8,0.7);
-    color: #facc15;
-    background: rgba(120,53,15,0.45);
-}
-
-.health-metric {
-    font-family: "Inter", monospace;
-    font-size: 0.78rem;
-    color: var(--text-muted);
-}
-
-.health-events {
-    color: var(--primary-soft);
-}
+/
 
 /* Dots */
 .health-dot {
@@ -1020,6 +920,78 @@ html {
     line-height: 1.1;
     text-align: left;
 }
+/* ===== Failure Handling Widget ===== */
+
+.failure-flow {
+  max-width: 720px;
+  margin: 2rem auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.failure-step {
+  width: 100%;
+  background: radial-gradient(
+      circle at top left,
+      rgba(56,189,248,0.18),
+      transparent 55%
+    ),
+    rgba(15,23,42,0.95);
+  border: 1px solid rgba(56,189,248,0.6);
+  border-radius: 16px;
+  padding: 1rem 1.2rem;
+  text-align: center;
+  box-shadow:
+    0 18px 40px rgba(15,23,42,0.9),
+    0 0 24px rgba(56,189,248,0.35);
+  opacity: 0.6;
+  transform: scale(0.97);
+  transition: all 0.4s ease;
+}
+
+.failure-step h4 {
+  margin-bottom: 0.35rem;
+  font-size: 0.95rem;
+  color: #e5f2ff;
+}
+
+.failure-step p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.failure-step.active {
+  opacity: 1;
+  transform: scale(1);
+  box-shadow:
+    0 22px 55px rgba(15,23,42,0.95),
+    0 0 36px rgba(56,189,248,0.7);
+}
+
+.step-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #38bdf8;
+  box-shadow: 0 0 14px rgba(56,189,248,0.9);
+  display: inline-block;
+  margin-bottom: 0.4rem;
+}
+
+.flow-arrow {
+  font-size: 1.2rem;
+  color: var(--primary-soft);
+  opacity: 0.7;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .failure-flow {
+    margin-top: 1.4rem;
+  }
+}
 
 /* Mobile tweak */
 @media (max-width: 640px) {
@@ -1028,6 +1000,77 @@ html {
         align-items: flex-end;
         gap: 0.18rem;
     }
+}
+/* ===== Integration Patterns Selector ===== */
+
+.pattern-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1.4rem 0 1.2rem;
+}
+
+.pattern-pill {
+  background: rgba(15,23,42,0.9);
+  border: 1px solid rgba(148,163,184,0.5);
+  color: var(--text-muted);
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pattern-pill:hover {
+  border-color: var(--primary-soft);
+  color: var(--text-main);
+  box-shadow: 0 0 16px rgba(56,189,248,0.4);
+}
+
+.pattern-pill.active {
+  background: radial-gradient(circle at top left,
+      rgba(56,189,248,0.25),
+      rgba(15,23,42,0.95));
+  border-color: rgba(56,189,248,0.9);
+  color: #e5f2ff;
+  box-shadow: 0 0 22px rgba(56,189,248,0.7);
+}
+
+.pattern-panel {
+  background: var(--bg-panel);
+  border: 1px solid rgba(148,163,184,0.35);
+  border-radius: 18px;
+  padding: 1.1rem 1.3rem;
+  box-shadow:
+    0 20px 45px rgba(15,23,42,0.9),
+    0 0 28px rgba(56,189,248,0.35);
+}
+
+.pattern-row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 0.8rem;
+  padding: 0.5rem 0;
+  font-size: 0.85rem;
+}
+
+.pattern-row:not(:last-child) {
+  border-bottom: 1px solid rgba(148,163,184,0.25);
+}
+
+.pattern-label {
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.65rem;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .pattern-row {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
 }
 
     </style>
@@ -1234,89 +1277,93 @@ html {
                 </article>
             </div>
         </div>
-    </section>
-<section id="health-monitor">
-    <div class="container">
-        <div class="section-header">
-            <div class="section-eyebrow">Operations</div>
-            <h2 class="section-title">Integration Health Monitor</h2>
-            <p class="section-desc">
-                Snapshot of core integration endpoints as observed by AuroreSoft. 
-                Indicative demo panel for system connectivity and flow stability.
-            </p>
-        </div>
-
-        <div class="health-widget">
-            <div class="health-header">
-                <span class="health-label">Live status</span>
-                <span class="health-env-pill">PROD · SIMULATED</span>
-            </div>
-
-            <div class="health-rows">
-                <div class="health-row">
-                    <div class="health-system">
-                        <span class="health-dot health-dot-ok"></span>
-                        SAP Core
-                    </div>
-                    <div class="health-meta">
-                        <span class="health-status ok">Online</span>
-                        <span class="health-metric"><span class="health-events" data-base="4200">0</span> ev/min</span>
-                    </div>
-                </div>
-
-                <div class="health-row">
-                    <div class="health-system">
-                        <span class="health-dot health-dot-ok"></span>
-                        Salesforce
-                    </div>
-                    <div class="health-meta">
-                        <span class="health-status ok">Stable</span>
-                        <span class="health-metric"><span class="health-events" data-base="3100">0</span> ev/min</span>
-                    </div>
-                </div>
-
-                <div class="health-row">
-                    <div class="health-system">
-                        <span class="health-dot health-dot-warn"></span>
-                         Boomi
-                    </div>
-                    <div class="health-meta">
-                        <span class="health-status warn">Minor queueing</span>
-                        <span class="health-metric"><span class="health-events" data-base="1980">0</span> ev/min</span>
-                    </div>
-                </div>
-
-                <div class="health-row">
-                    <div class="health-system">
-                        <span class="health-dot health-dot-ok"></span>
-                        SAP CPI
-                    </div>
-                    <div class="health-meta">
-                        <span class="health-status ok">Healthy</span>
-                        <span class="health-metric"><span class="health-events" data-base="2650">0</span> ev/min</span>
-                    </div>
-                </div>
-
-                <div class="health-row">
-                    <div class="health-system">
-                        <span class="health-dot health-dot-ok"></span>
-                        Workday / HR
-                    </div>
-                    <div class="health-meta">
-                        <span class="health-status ok">Synchronized</span>
-                        <span class="health-metric"><span class="health-events" data-base="1150">0</span> ev/min</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="health-footer">
-                <span id="healthLastCheck">Last check: --:--:--</span>
-                <span class="health-footer-sep">•</span>
-                <span>Region: Primary · IST</span>
-            </div>
-        </div>
-    </div>
+        
+<!-- Architecture -->
 </section>
+<section id="integration-patterns">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Architecture</div>
+      <h2 class="section-title">Integration Patterns</h2>
+      <p class="section-desc">
+        Different business problems require different integration patterns.
+        Each pattern below is selected intentionally — not by habit.
+      </p>
+    </div>
+
+    <div class="pattern-selector">
+      <button class="pattern-pill active" data-pattern="realtime">🔁 Real-time</button>
+      <button class="pattern-pill" data-pattern="batch">⏱ Batch</button>
+      <button class="pattern-pill" data-pattern="event">⚡ Event-driven</button>
+      <button class="pattern-pill" data-pattern="hybrid">🧠 Hybrid</button>
+    </div>
+
+    <div class="pattern-panel">
+      <div class="pattern-row">
+        <span class="pattern-label">Typical use case</span>
+        <span id="patternUse"></span>
+      </div>
+      <div class="pattern-row">
+        <span class="pattern-label">Tools used</span>
+        <span id="patternTools"></span>
+      </div>
+      <div class="pattern-row">
+        <span class="pattern-label">Error strategy</span>
+        <span id="patternError"></span>
+      </div>
+      <div class="pattern-row">
+        <span class="pattern-label">Why this works</span>
+        <span id="patternWhy"></span>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Failure-strategy -->
+<section id="failure-strategy">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">Reliability</div>
+      <h2 class="section-title">How Failures Are Handled</h2>
+      <p class="section-desc">
+        Every integration is designed with predictable failure handling — no silent data loss,
+        no guesswork, and clear recovery paths.
+      </p>
+    </div>
+
+    <div class="failure-flow">
+      <div class="failure-step active">
+        <span class="step-dot"></span>
+        <h4>Failure detected</h4>
+        <p>Timeouts, validation errors, auth failures or downstream outages are detected immediately.</p>
+      </div>
+
+      <div class="flow-arrow">↓</div>
+
+      <div class="failure-step">
+        <span class="step-dot"></span>
+        <h4>Retry policy</h4>
+        <p>Configurable retries with backoff ensure transient issues recover automatically.</p>
+      </div>
+
+      <div class="flow-arrow">↓</div>
+
+      <div class="failure-step">
+        <span class="step-dot"></span>
+        <h4>Dead letter queue</h4>
+        <p>Unrecoverable messages are isolated safely for analysis and controlled reprocessing.</p>
+      </div>
+
+      <div class="flow-arrow">↓</div>
+
+      <div class="failure-step">
+        <span class="step-dot"></span>
+        <h4>Alert & recovery</h4>
+        <p>Alerts trigger investigation, fixes are applied, and impacted data is replayed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 
     <!-- ABOUT + CONTACT -->
     <section id="about">
@@ -1690,48 +1737,73 @@ html {
     const metricsBlock = document.querySelector(".hero-metrics");
     if (metricsBlock) observer.observe(metricsBlock);
 })();
-// ===== Integration Health Monitor animation =====
+
 (function () {
-    const lastCheckEl = document.getElementById("healthLastCheck");
-    const eventEls = document.querySelectorAll(".health-events");
-    if (!lastCheckEl || !eventEls.length) return;
+  const steps = document.querySelectorAll(".failure-step");
+  if (!steps.length) return;
 
-    function updateLastCheck() {
-        // If you already have getTimeInZone(), reuse it. 
-        // Otherwise use local time:
-        const now = new Date();
-        const t = now.toLocaleTimeString("en-GB", {
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit"
-        });
-        lastCheckEl.textContent = "Last check: " + t;
-    }
+  let index = 0;
 
-    function randomAround(base, spread) {
-        const delta = (Math.random() - 0.5) * spread;
-        return Math.max(0, Math.round(base + delta));
-    }
+  function activateStep() {
+    steps.forEach(s => s.classList.remove("active"));
+    steps[index].classList.add("active");
+    index = (index + 1) % steps.length;
+  }
 
-    function updateEventRates() {
-        eventEls.forEach(el => {
-            const base = parseInt(el.dataset.base || "1000", 10);
-            const value = randomAround(base, base * 0.08); // ±8%
-            el.textContent = value.toString();
-        });
-    }
-
-    // Initial paint
-    updateLastCheck();
-    updateEventRates();
-
-    // Update every ~7 seconds to look like periodic polling
-    setInterval(() => {
-        updateLastCheck();
-        updateEventRates();
-    }, 7000);
+  activateStep();
+  setInterval(activateStep, 1000);
 })();
+(function () {
+  const data = {
+    realtime: {
+      use: "User-facing transactions requiring immediate consistency",
+      tools: "Boomi · SAP CPI · REST / SOAP APIs",
+      error: "Synchronous validation, retries for transient failures, fast alerts",
+      why: "Ensures immediate feedback and data accuracy for critical operations"
+    },
+    batch: {
+      use: "Large data volumes processed on schedules",
+      tools: "Boomi · SAP CPI · SFTP · Flat files",
+      error: "Checkpointing, resumable batches, dead letter handling",
+      why: "Efficient, cost-effective and resilient for non-real-time needs"
+    },
+    event: {
+      use: "Asynchronous reactions to business events",
+      tools: "Boomi Events · SAP CPI · Webhooks",
+      error: "Guaranteed delivery, idempotency, replay support",
+      why: "Decouples systems and scales naturally with business growth"
+    },
+    hybrid: {
+      use: "Mixed landscapes with real-time + batch dependencies",
+      tools: "Boomi · SAP CPI · APIs · Messaging",
+      error: "Layered retries, DLQ isolation, centralized monitoring",
+      why: "Balances speed, reliability and operational control"
+    }
+  };
 
+  const pills = document.querySelectorAll(".pattern-pill");
+  const useEl = document.getElementById("patternUse");
+  const toolsEl = document.getElementById("patternTools");
+  const errorEl = document.getElementById("patternError");
+  const whyEl = document.getElementById("patternWhy");
+
+  function select(pattern) {
+    pills.forEach(p => p.classList.remove("active"));
+    document.querySelector(`[data-pattern="${pattern}"]`).classList.add("active");
+
+    const d = data[pattern];
+    useEl.textContent = d.use;
+    toolsEl.textContent = d.tools;
+    errorEl.textContent = d.error;
+    whyEl.textContent = d.why;
+  }
+
+  pills.forEach(p =>
+    p.addEventListener("click", () => select(p.dataset.pattern))
+  );
+
+  select("realtime"); // default
+})();
 </script>
 
 </body>
